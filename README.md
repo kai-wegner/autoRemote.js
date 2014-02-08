@@ -6,6 +6,7 @@ I hope we can develop a plug&play Linux and Mac OS X Client which can be extende
 Currently this is only a POC and early alpha stage  
 
 [AutoApps (joaoapps.com)](http://joaoapps.com/)
+
 [AutoRemote for Android (Google PlayStore)](https://play.google.com/store/apps/details?id=com.joaomgcd.autoremote&hl=de)
 
 ### Use
@@ -15,4 +16,4 @@ At the moment the only thing you can do is execute the autoRemote file in the "b
 
 ### Install
 
-npm install autoRemote.js
+npm install autoremote.js

@@ -1,0 +1,47 @@
+{
+  "name": "autoremote.js",
+  "description": "autoRemote node.js API",
+  "version": "0.0.1",
+  "author": {
+    "name": "Kai Wegner",
+    "email": "kw+autoRemote.js@o511.de"
+  },
+  "contributors": [
+    {
+      "name": "Kai Wegner",
+      "email": "kw+autoRemote.js@o511.de"
+    }
+  ],
+  "dependencies": {
+    "mustache":"0.8.x",
+    "when":"2.8.x",
+    "underscore":"1.5.x"
+  },
+  "devDependencies": {
+  },
+  "keywords": [
+    "autoRemote.js",
+    "API"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kai-wegner/autoRemote.js"
+  },
+  "main": "index",
+  "bin": {
+    "express": "./bin/autoRemote"
+  },
+  "scripts": {
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "license": "GPL",
+  "readme": "",
+  "readmeFilename": "Readme.md",
+  "bugs": {
+    "url": "https://github.com/kai-wegner/autoRemote.js/issues"
+  },
+  "homepage": "https://github.com/kai-wegner/autoRemote.js",
+  "_id": "autoRemote.js@0.0.1"
+}

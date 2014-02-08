@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+
+var autoRemote 	= require('../lib/autoRemote');
+
+var exampleDevice = {
+	key:'exampleKey',
+	id:'MyDevice',
+	name:'autoRemote.js'
+};
+
+
+
+// Getting local and public ip-addresses
+autoRemote.getServerConfig().
+	then(function(serverConfig) {
+		// Testing correct assignment of ips and ports
+		var localIF 	= serverConfig.interfaces.local;
+		var publicIF 	= serverConfig.interfaces.public;
+		console.log('Welcome to autoRemote.js - TEST');
+		console.log('... Will use the following ips:');
+		console.log('       local   '+localIF.ip+' (Port: '+localIF.port+')');
+		console.log('       public  '+publicIF.ip+' (Port: '+publicIF.port+')');
+
+		// Testing assignment of correct register path
+		var registerPath = autoRemote.getAutoRemoteRegisterPath(exampleDevice,serverConfig);
+		console.log('... This will be the path we use to register this device:');
+		console.log('      '+registerPath);
+
+		// Testing final call to register us so that we can receive requests
+		console.log('... Trying to register us:');
+		autoRemote.registerDevice(exampleDevice,serverConfig);
+
+		console.log('... Trying to send a message to '+exampleDevice.key+':');
+		autoRemote.sendMessageToDevice(exampleDevice,'Hi');
+	});

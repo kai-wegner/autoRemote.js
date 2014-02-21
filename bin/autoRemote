@@ -1,35 +1,63 @@
 #!/usr/bin/env node
 
+var program = require('commander'),
+	pkg = require('../package.json'),
+	version = pkg.version,
+	os = require('os');
+
+
 var autoRemote 	= require('../lib/autoRemote');
 
-var exampleDevice = {
-	key:'exampleKey',
-	id:'MyDevice',
-	name:'autoRemote.js'
-};
+program
+	.version(version)
 
+program
+	.command('send <message> <receiverKey>')
+	.action(function(message,receiverKey) {
 
+		var exampleDevice = {
+			key:receiverKey
+		};
 
-// Getting local and public ip-addresses
-autoRemote.getServerConfig().
-	then(function(serverConfig) {
-		// Testing correct assignment of ips and ports
-		var localIF 	= serverConfig.interfaces.local;
-		var publicIF 	= serverConfig.interfaces.public;
 		console.log('Welcome to autoRemote.js - TEST');
-		console.log('... Will use the following ips:');
-		console.log('       local   '+localIF.ip+' (Port: '+localIF.port+')');
-		console.log('       public  '+publicIF.ip+' (Port: '+publicIF.port+')');
-
-		// Testing assignment of correct register path
-		var registerPath = autoRemote.getAutoRemoteRegisterPath(exampleDevice,serverConfig);
-		console.log('... This will be the path we use to register this device:');
-		console.log('      '+registerPath);
-
-		// Testing final call to register us so that we can receive requests
-		console.log('... Trying to register us:');
-		autoRemote.registerDevice(exampleDevice,serverConfig);
 
 		console.log('... Trying to send a message to '+exampleDevice.key+':');
-		autoRemote.sendMessageToDevice(exampleDevice,'Hi');
-	});
+		autoRemote.sendMessageToDevice(exampleDevice,message);
+	})
+
+program
+	.command('register <toDevice_Key>')
+	.action(function(deviceKey) {
+
+		var toDevice_Key = {key:deviceKey};
+
+		// Getting local and public ip-addresses
+		autoRemote.getServerConfig().
+			then(function(serverConfig) {
+				// Testing correct assignment of ips and ports
+				var localIF 	= serverConfig.interfaces.local;
+				var publicIF 	= serverConfig.interfaces.public;
+
+				console.log('Welcome to autoRemote.js - TEST');
+				console.log('... Will use the following ips:');
+				console.log('       local   '+localIF.ip+' (Port: '+localIF.port+')');
+				console.log('       public  '+publicIF.ip+' (Port: '+publicIF.port+')');
+
+				// Testing call to register us so that we can receive requests
+				console.log('... Trying to register us:');
+				autoRemote.registerServerToDevice(serverConfig,toDevice_Key);
+			});
+	})
+
+program.command('getServerKey')
+	.action(function() {
+		autoRemote.getServerConfig().
+			then(function(serverConfig) {
+				console.log('Local server-key: '+autoRemote.getServerKey());
+			});
+	})
+
+if(process.argv.length < 3)
+	console.log('Missing arguments. Try --help!');
+else
+	program.parse(process.argv);

@@ -9,11 +9,40 @@ Currently this is only a POC and early alpha stage
 
 [AutoRemote for Android (Google PlayStore)](https://play.google.com/store/apps/details?id=com.joaomgcd.autoremote&hl=de)
 
-### Use
-
-DO NOT USE! Developers only ATM. Send me a message and we will keep you updated.
-At the moment the only thing you can do is execute the autoRemote file in the "bin"-directory to test some stuff.
-
 ### Install
+```Shell
+~$: git clone http://github.com/kai-wegner/autoRemote.js
+~$: cd autoRemote.js
+~$: npm install autoremote.js
+```
 
-npm install autoremote.js
+### Use
+You can use the executable file under "bin/" to send messages and test the register-api.
+
+- Show help message
+```Shell
+~$: ./autoRemote --help
+
+  Usage: autoRemote [options] [command]
+
+  Commands:
+
+    send <message> <receiverKey>
+    register <toDevice_Key>
+    getServerKey
+
+  Options:
+
+    -h, --help     output usage information
+    -V, --version  output the version number
+```
+- Send a Message/Register to another AutoRemote-Device
+see [AutoRemote - Key/ID](http://joaoapps.com/autoremote/personal/) for getting your deviceKey.
+
+```Shell
+~$: autoRemote send "Hello World!" yourDeviceKey
+~$: autoRemote register yourDeviceKey
+```
+
+### Configuration and serverKey-file
+Configuration is under "conf/" should contain self-explaining configuration files and the serverKey-File.

@@ -1,7 +1,7 @@
 {
   "name": "autoremote.js",
   "description": "autoRemote node.js API",
-  "version": "0.5.0",
+  "version": "0.5.2",
   "author": {
     "name": "Kai Wegner",
     "email": "kw+autoRemote.js@o511.de"

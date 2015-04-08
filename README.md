@@ -46,3 +46,8 @@ see [AutoRemote - Key/ID](http://joaoapps.com/autoremote/personal/) for getting 
 
 ### Configuration and serverKey-file
 Configuration is under "conf/" should contain self-explaining configuration files and the serverKey-File.
+
+# LICENSE
+The MIT License (MIT)
+
+Copyright (c) 2015 Kai Wegner
